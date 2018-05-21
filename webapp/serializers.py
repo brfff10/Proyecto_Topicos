@@ -6,5 +6,4 @@ from rest_framework import serializers
 class PatientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Patient
-        fields = ('first_name', 'last_name', 'gender', 'age', 'nationality')
-
+        fields = ('patient_id', 'first_name', 'last_name', 'gender', 'age', 'nationality', 'contact_info', 'phone_number', 'applicant_unit')
