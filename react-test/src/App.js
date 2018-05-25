@@ -1,43 +1,67 @@
-import React, { Component } from 'react';
-import logo from './medical (1).svg';
-import './App.css';
-import { Navbar, Nav, NavItem, MenuItem, NavDropdown} from 'react-bootstrap';
+import React from 'react';
+import { BrowserRouter  as Router, Route, Link } from 'react-router-dom';
+import NavbarParent from './components/NavBar/NavBarParent';
+import HomeScreen from './components/HomeScreen/HomeScreen'
+import PatientInfoRequests from './components/PatientInfoRequests/PatientInfoRequests';
 
-class App extends Component {
-  render() {
-      return <div className="App">
-          <Navbar>
-              <Navbar.Header>
-              <Navbar.Brand>
-                  <a href=""> Medical Database </a>
-              </Navbar.Brand>
-              </Navbar.Header>
-              <Nav>
-              <NavItem eventKey={1} href="#"> Tab 1 </NavItem>
-              <NavItem eventKey={2} href="#"> Tab 2 </NavItem>
-              <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                  <MenuItem eventKey={3.1}> My Profile </MenuItem>
-                  <MenuItem divider />
-                  <MenuItem eventKey={3.2}> My Patients </MenuItem>
-                  <MenuItem divider />
-                  <MenuItem eventKey={3.3}> Requests </MenuItem>
-                  <MenuItem divider />
-                  <MenuItem eventKey={3.4}> Separate Link </MenuItem>
-              </NavDropdown>
-              </Nav>
-          </Navbar>
-          <header className="App-header">
-              <img src={logo} className="App-logo" alt="logo"/>
-              <h1 className="App-title"> Welcome to the HIV / Tuberculosis Patient Database </h1>
-          </header>
-          <p className="App-intro">
-              Mea ludus minimum interpretaris ut, vel ei quem percipitur dissentias. Vel deserunt ullamcorper ut,
-              has admodum civibus repudiandae id. Electram theophrastus pro ad, ut solet mediocrem pro, mel nullam
-              mollis ea. Sit ullum everti sanctus ad. Impedit pericula at ius, ei vis omnium disputationi. Wisi
-              definiebas reprehendunt vel te.
-          </p>
-      </div>;
-  }
-}
+const App = () => (
+  <Router>
+    <div>
+      <NavbarParent/>
+
+      <Route exact path="/" component={HomeScreen} />
+      <Route path="/about" component={About} />
+      <Route path="/topics" component={Topics} />
+      <Route path="/requests" component={PatientInfoRequests} />
+      <Route path="/tab1" component={UnderConstruction} />
+      <Route path="/tab2" component={UnderConstruction} />
+      <Route path="/profile" component={UnderConstruction} />
+      <Route path="/patients" component={UnderConstruction} />
+    </div>
+  </Router>
+);
+
+const UnderConstruction = () => (
+  <div>
+    <h2>Under Construction</h2>
+  </div>
+);
+
+const About = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+);
+
+const Topics = ({ match }) => (
+  <div>
+    <h2>Topics</h2>
+    <ul>
+      <li>
+        <Link to={`${match.url}/rendering`}>Rendering with React</Link>
+      </li>
+      <li>
+        <Link to={`${match.url}/components`}>Components</Link>
+      </li>
+      <li>
+        <Link to={`${match.url}/props-v-state`}>Props v. State</Link>
+      </li>
+    </ul>
+
+    <Route path={`${match.url}/:topicId`} component={Topic} />
+    <Route
+      exact
+      path={match.url}
+      render={() => <h3>Please select a topic.</h3>}
+    />
+  </div>
+);
+
+const Topic = ({ match }) => (
+  <div>
+    <h3>{match.params.topicId}</h3>
+  </div>
+);
+
 
 export default App;
