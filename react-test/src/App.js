@@ -18,7 +18,7 @@ const App = () => (
       <Route path="/tab2" component={UnderConstruction} />
       <Route path="/profile" component={UnderConstruction} />
       <Route path="/patients" component={PatientInfoRequests} />
-      <Route path="/patients/:id" component={UnderConstruction} />
+      <Route path="/records/:id" component={UnderConstruction} />
     </div>
   </Router>
 );

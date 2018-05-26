@@ -5,7 +5,6 @@ import PatientList from './PatientList/PatientList';
 const PatientContainerStyle = styled.div`
     text-align: center;
     margin: 25px;
-    
 `;
 
 class PatientInfoRequests extends Component {
@@ -18,8 +17,9 @@ class PatientInfoRequests extends Component {
         this.filterList = this.filterList.bind(this);
     }
     componentDidMount() {
-        this.getItems();
+        //this.getItems(); //activate this
         var testPatients=[{
+            patient_id: 1111,
             first_name : 'Andres',
             last_name: 'Manuelovsky',
             age: 57,
@@ -28,6 +28,7 @@ class PatientInfoRequests extends Component {
             phone_number: '6666666666',
             applicant_unit: '1' 
         },{
+            patient_id: 1112,
             first_name : 'Andres',
             last_name: 'Manuelovish',
             age: 57,
@@ -35,13 +36,13 @@ class PatientInfoRequests extends Component {
             contact_info: 'andres@putin.com',
             phone_number: '6666666666',
             applicant_unit: '1' 
-        }];
+        }]; //Eliminate this
         this.setState({patients: testPatients, searchResults: testPatients})
     }
     getItems(){
         fetch('http://localhost:8000/api/patients/')
             .then(results => results.json())
-            .then(results => this.setState({patients: results}));   
+            .then(results => this.setState({patients: results, searchResults: results}));   
     }
     filterList(event){
         var updatedList = this.state.patients;
