@@ -109,25 +109,38 @@ class Record(models.Model): #Expediente previously JobHistory
     update_date = models.DateTimeField(auto_now=True)#to the second
     birth_date = models.DateField()
     blood_type = models.CharField(max_length=20)
-    diabetes = models.CharField(max_length=3, blank=True) #yes/no
-    sample_type = models.CharField(max_length=10, blank=True)
-    deceased = models.CharField(max_length=3)
-    subtype = models.CharField(max_length=30, blank=True)
-    resistance = models.CharField(max_length=10, blank=True)
-    children = models.CharField(max_length=3, blank=True) #embarazo cuantos hijos
-    children_num = models.IntegerField(null=True, blank=True)
-    english = models.CharField(max_length=3, blank=True)#bool?
-    sexual_preference = models.CharField(max_length=20, blank=True)
-    immigration_hist = models.CharField(max_length=30, blank=True)
-    insurance = models.CharField(max_length=30, blank=True)
-    drug_use = models.CharField(max_length=30, blank=True)
-    shared_needles = models.CharField(max_length=3)#bool?
-    criminal_record = models.CharField(max_length=30, blank=True)
+    DIABETES_CHOICES = (
+        ('P', 'Positive'),
+        ('N', 'Negative'),
+    )
+    diabetes = models.CharField(max_length=3, choices=DIABETES_CHOICES, blank=True, null=True) 
+    sample_type = models.CharField(max_length=10, blank=True, null=True)
+    deceased = models.CharField(max_length=3, blank=True, null=True)
+    subtype = models.CharField(max_length=30, blank=True, null=True)
+    resistance = models.CharField(max_length=10, blank=True, null=True)
+    children = models.CharField(max_length=3, blank=True, null=True) #embarazo cuantos hijos
+    children_num = models.IntegerField(blank=True, null=True)
+    ENGLISH_CHOICES = (
+        ('Y', 'Yes'),
+        ('N', 'No'),
+    )
+    english = models.CharField(max_length=3, blank=True, null=True, choices=ENGLISH_CHOICES)
+    SP_CHOICES = (
+        ('Heterosexual', 'Heterosexual'),
+        ('Homosexual', 'Homosexual'),
+        ('Bisexual', 'Bisexual'),
+        ('Other', 'Other'),
+    )
+    sexual_preference = models.CharField(max_length=20, blank=True, null=True, choices=SP_CHOICES)
+    immigration_hist = models.CharField(max_length=30, blank=True, null=True)
+    insurance = models.CharField(max_length=30, blank=True, null=True)
+    drug_use = models.CharField(max_length=30, blank=True, null=True)
+    shared_needles = models.CharField(max_length=3, null=True, choices=ENGLISH_CHOICES)
+    criminal_record = models.CharField(max_length=30, blank=True, null=True)
 
-    patient = models.ForeignKey(Patient)  # patientid linked to record
-    birth_place = models.ForeignKey(City)
-    nationality = models.ForeignKey(Country)
-    job = models.ForeignKey(Job)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)  # patientid linked to record
+    birth_place = models.ForeignKey(City, blank=True, null=True)
+    job = models.ForeignKey(Job, blank=True, null=True)
     class Meta:
         db_table = u'records'
 
