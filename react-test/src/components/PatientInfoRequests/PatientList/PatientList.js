@@ -3,31 +3,20 @@ import React, { Component } from 'react';
 class PatientList extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            'patients': []
-        }
-    }
-    componentDidMount() {
-        this.getItems();
-    }
-    getItems(){
-        fetch('http://localhost:8000/api/patients/')
-            .then(results => results.json())
-            .then(results => this.setState({'patients': results}));
     }
     render(){
         return (
             <ul>
-                {this.state.patients.map(function(patient, index){
+                {this.props.patients.map(function(patient, index){
                     return (
                         <div key={index}>
                             <h1>{patient.first_name} {patient.last_name}</h1>
-                            <p>{patient.gender}</p>
-                            <p>{patient.age}</p>
-                            <p>{patient.nationality}</p>
-                            <p>{patient.contact_info}</p>
-                            <p>{patient.phone_number}</p>
-                            <p>{patient.applicant_unit}</p>
+                            <p>Gender: {patient.gender}</p>
+                            <p>Age: {patient.age}</p>
+                            <p>Nationality: {patient.nationality}</p>
+                            <p>Contact info: {patient.contact_info}</p>
+                            <p>Phone number: {patient.phone_number}</p>
+                            <p>Applicant unit: {patient.applicant_unit}</p>
                         </div>
                     )
                 })}

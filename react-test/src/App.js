@@ -3,6 +3,7 @@ import { BrowserRouter  as Router, Route, Link } from 'react-router-dom';
 import NavbarParent from './components/NavBar/NavBarParent';
 import HomeScreen from './components/HomeScreen/HomeScreen'
 import PatientInfoRequests from './components/PatientInfoRequests/PatientInfoRequests';
+import About from './components/About/About';
 
 const App = () => (
   <Router>
@@ -12,11 +13,12 @@ const App = () => (
       <Route exact path="/" component={HomeScreen} />
       <Route path="/about" component={About} />
       <Route path="/topics" component={Topics} />
-      <Route path="/requests" component={PatientInfoRequests} />
+      <Route path="/requests" component={UnderConstruction} />
       <Route path="/tab1" component={UnderConstruction} />
       <Route path="/tab2" component={UnderConstruction} />
       <Route path="/profile" component={UnderConstruction} />
-      <Route path="/patients" component={UnderConstruction} />
+      <Route path="/patients" component={PatientInfoRequests} />
+      <Route path="/patients/:id" component={UnderConstruction} />
     </div>
   </Router>
 );
@@ -27,11 +29,6 @@ const UnderConstruction = () => (
   </div>
 );
 
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-);
 
 const Topics = ({ match }) => (
   <div>
