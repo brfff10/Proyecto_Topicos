@@ -4,6 +4,7 @@ import NavbarParent from './components/NavBar/NavBarParent';
 import HomeScreen from './components/HomeScreen/HomeScreen'
 import PatientInfoRequests from './components/PatientInfoRequests/PatientInfoRequests';
 import About from './components/About/About';
+import Records from './components/Records/Records';
 
 const App = () => (
   <Router>
@@ -18,7 +19,7 @@ const App = () => (
       <Route path="/tab2" component={UnderConstruction} />
       <Route path="/profile" component={UnderConstruction} />
       <Route path="/patients" component={PatientInfoRequests} />
-      <Route path="/records/:id" component={UnderConstruction} />
+      <Route path="/record/:id" component={Records} />
     </div>
   </Router>
 );
