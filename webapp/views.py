@@ -1,11 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from rest_framework.decorators import action, api_view
-from rest_framework import status, viewsets
+from rest_framework import status, viewsets, generics
 from rest_framework.decorators import detail_route, action
 from rest_framework.response import Response
 from webapp.models import Patient, Record, City, Job 
-from webapp.serializers import PatientSerializer, RecordSerializer, CitySerializer, JobSerializer
+from webapp.serializers import PatientSerializer, RecordSerializer, CitySerializer, JobSerializer, UserSerializer
+from django.contrib.auth.models import User
+from rest_framework import permissions
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class CityViewSet(viewsets.ModelViewSet):
     """
@@ -13,7 +20,8 @@ class CityViewSet(viewsets.ModelViewSet):
     """
     queryset = City.objects.all()
     serializer_class = CitySerializer
-
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    
 
 class JobViewSet(viewsets.ModelViewSet):
     """
@@ -21,6 +29,7 @@ class JobViewSet(viewsets.ModelViewSet):
     """
     queryset = Job.objects.all()
     serializer_class = JobSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 
 class PatientViewSet(viewsets.ModelViewSet):
@@ -29,7 +38,7 @@ class PatientViewSet(viewsets.ModelViewSet):
     """
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
-
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     """
     @action(methods=['post', 'get'], detail=True)
     def details(self, request, pk=None):
@@ -57,4 +66,5 @@ class RecordViewSet(viewsets.ModelViewSet):
     """
     queryset = Record.objects.all()
     serializer_class = RecordSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
   
