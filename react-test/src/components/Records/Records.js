@@ -67,7 +67,7 @@ class Records extends Component{
         
     }
     getItems(recordId){
-        fetch('http://localhost:8000/api/'+recordId+'record/'+recordId)
+        fetch('http://localhost:8000/api/patient/'+recordId+'record/'+recordId)
             .then(results => results.json())
             .then(results => this.setState({record: results}));   
     }
