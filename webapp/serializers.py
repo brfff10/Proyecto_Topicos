@@ -29,7 +29,7 @@ class PatientSerializer(serializers.HyperlinkedModelSerializer):
 
 class RecordSerializer(serializers.HyperlinkedModelSerializer):
     
-    patient = PatientSerializer()
+    patient = PatientSerializer(read_only=True)
     birth_place = CitySerializer(read_only=True)
     job = JobSerializer(read_only=True)
     class Meta:
