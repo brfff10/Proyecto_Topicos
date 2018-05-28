@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from webapp.models import Patient, Record, Country, City, Job
+from webapp.models import Patient, Record, Country, City, Job, Data
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
@@ -37,6 +37,12 @@ class RecordSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('record_id', 'patient', 'entry_date', 'update_date', 'birth_date', 'blood_type', 'diabetes', 'sample_type', 'deceased', 'subtype', 'resistance',
                    'children', 'english', 'sexual_preference', 'immigration_hist', 'insurance', 'drug_use', 'shared_needles', 'criminal_record', 'birth_place', 'job')
 
+class DataSerializer(serializers.HyperlinkedModelSerializer):
+    
+    patient = PatientSerializer(read_only=True)
+    class Meta:
+        model = Data
+        fields = ('dataset_id', 'patient', 'cv_value', 'cd4_value', 'entry_date')
 
 """
 class RecordTestSerializer(serializers.BaseSerializer):

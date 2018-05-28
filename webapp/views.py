@@ -4,8 +4,8 @@ from rest_framework.decorators import action, api_view
 from rest_framework import status, viewsets, generics
 from rest_framework.decorators import detail_route, action
 from rest_framework.response import Response
-from webapp.models import Patient, Record, City, Job 
-from webapp.serializers import PatientSerializer, RecordSerializer, CitySerializer, JobSerializer, UserSerializer
+from webapp.models import Patient, Record, City, Job, Data 
+from webapp.serializers import PatientSerializer, RecordSerializer, CitySerializer, JobSerializer, UserSerializer, PatientSerializer, DataSerializer
 from django.contrib.auth.models import User
 from rest_framework import permissions
 
@@ -71,10 +71,31 @@ class PatientRecordViewSet(viewsets.ModelViewSet):
         return Record.objects.filter(patient=self.kwargs['patient_pk'])
     #queryset = Record.objects.all()
 
+
 class RecordViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing Records.
     """
     queryset = Record.objects.all()
     serializer_class = RecordSerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class PatientDataViewSet(viewsets.ModelViewSet):
+    """
+    A simple ViewSet for viewing and editing Patients.
+    """
+
+    serializer_class = DataSerializer
+
+    def get_queryset(self):
+        return Data.objects.filter(patient=self.kwargs['patient_pk'])
+
+
+class DataViewSet(viewsets.ModelViewSet):
+    """
+    A simple ViewSet for viewing and editing Records.
+    """
+    queryset = Data.objects.all()
+    serializer_class = DataSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)

@@ -188,7 +188,7 @@ class Data(models.Model):
     cd4_value = models.IntegerField(null=True, blank=True)
     entry_date = models.DateTimeField(auto_now_add=True)
 
-    record_id = models.ForeignKey(Record)
+    patient = models.ForeignKey(Patient)
     class Meta:
         db_table = u'data'
 
