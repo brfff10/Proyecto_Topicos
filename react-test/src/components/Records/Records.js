@@ -67,12 +67,12 @@ class Records extends Component{
         
     }
     getItems(recordId){
-        fetch('http://localhost:8000/api/patient/'+recordId+'record/'+recordId)
+        fetch('http://ec2-18-218-177-24.us-east-2.compute.amazonaws.com:8000/api/patients/'+recordId+'record/'+recordId)
             .then(results => results.json())
             .then(results => this.setState({record: results}));   
     }
     getData(recordId){
-        fetch('http://localhost:8000/api/patient/'+recordId+'data/'+recordId)
+        fetch('http://ec2-18-218-177-24.us-east-2.compute.amazonaws.com:8000/api/patients/'+recordId+'data/'+recordId)
             .then(results => results.json())
             .then(results => this.setState({data: results}));   
     }
