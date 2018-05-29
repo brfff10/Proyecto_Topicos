@@ -16,7 +16,7 @@ router.register(r'data', DataViewSet, base_name='data')
 router.register(r'cities', CityViewSet, base_name='city')
 router.register(r'jobs', JobViewSet, base_name='job')
 router.register(r'users', UserViewSet, base_name='user')
-router.register(r'diagnosis', DiagnosisViewSe, base_name='diagnosis')
+router.register(r'diagnosis', DiagnosisViewSet, base_name='diagnosis')
 router.register(r'treatments', TreatmentViewSet, base_name='treatment')
 
 urlpatterns = [
