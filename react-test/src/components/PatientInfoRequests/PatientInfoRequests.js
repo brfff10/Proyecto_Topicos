@@ -40,11 +40,11 @@ class PatientInfoRequests extends Component {
 
         //this.setState({patients: testPatients, searchResults: testPatients})
 
-        this.setState({patients: testPatients, searchResults: testPatients}) //Also this
+        //this.setState({patients: testPatients, searchResults: testPatients}) //Also this
 
     }
     getItems(){
-        fetch('http://ec2-18-218-177-24.us-east-2.compute.amazonaws.com:8000/api/patients/', { mode: 'no-cors' })
+        fetch('http://ec2-18-218-177-24.us-east-2.compute.amazonaws.com:8000/api/patients/')
             .then(results => results.json())
             .then(results => this.setState({patients: results, searchResults: results}));   
     }

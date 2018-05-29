@@ -8,13 +8,13 @@ class HomeScreen extends Component{
             <div>
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title"> Welcome to the HIV / Tuberculosis Patient Database </h1>
+                    <h1 className="App-title"> General Hospital Tijuana HIV/Tuberculosis Patient Database </h1>
                 </header>
                 <p className="App-intro">
-                    Mea ludus minimum interpretaris ut, vel ei quem percipitur dissentias. Vel deserunt ullamcorper ut,
-                    has admodum civibus repudiandae id. Electram theophrastus pro ad, ut solet mediocrem pro, mel nullam
-                    mollis ea. Sit ullum everti sanctus ad. Impedit pericula at ius, ei vis omnium disputationi. Wisi
-                    definiebas reprehendunt vel te.
+                   This is a database for the HIV And Tuberculosis Research division of the Prof. Jose Roman Chavez Mendez within  
+                   the General Hospital of Tijuana, research focused on the treatment and prevention of HIV and tuberculosis viruses 
+                   in our city. TThe system must be able to enter, edit and view all the information generated and associated with 
+                   the investigation.
                 </p>
             </div>
         )

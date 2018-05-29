@@ -5,7 +5,10 @@ class About extends Component{
         return(
             <div>
                 <h1> About </h1>
-                <p> This website was done for the class of bioengineering, some parts in React mostly in tears</p>
+                <p> This is a database for the HIV And Tuberculosis Research division of the Prof. Jose Roman Chavez Mendez within  
+                   the General Hospital of Tijuana, research focused on the treatment and prevention of HIV and tuberculosis viruses 
+                   in our city. TThe system must be able to enter, edit and view all the information generated and associated with 
+                   the investigation.</p>
             </div>
         )
     }

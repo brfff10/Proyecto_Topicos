@@ -22,33 +22,33 @@ class Records extends Component{
         var testRecord = {
             record_id: 1,
             patient: {
-                patient_id: 3,
-                first_name: "Joe",
-                last_name: "Doe",
+                patient_id: 1,
+                first_name: "Jon",
+                last_name: "Snow",
                 gender: "M",
-                age: 30,
-                nationality: "MEX",
-                contact_info: "",
-                phone_number: "6641886594",
-                applicant_unit: "UC"
+                age: 18,
+                nationality: "WES",
+                contact_info: "Raven",
+                phone_number: "Raven",
+                applicant_unit: "Stark"
             },
             entry_date: "2018-05-24T22:45:55.959000Z",
             update_date: "2018-05-26T00:44:54.871046Z",
             birth_date: "1996-05-17",
             blood_type: "O",
             diabetes: "N",
-            sample_type: "",
-            deceased: "",
-            subtype: "",
-            resistance: "",
-            children: "",
-            english: "",
-            sexual_preference: "",
-            immigration_hist: "",
-            insurance: "",
-            drug_use: "",
-            shared_needles: "",
-            criminal_record: "",
+            sample_type: "Type A",
+            deceased: "Maybe",
+            subtype: "Subtype ADG",
+            resistance: "High",
+            children: "No",
+            english: "Yes",
+            sexual_preference: "Straight",
+            immigration_hist: "Yes",
+            insurance: "No",
+            drug_use: "No",
+            shared_needles: "No",
+            criminal_record: "Yes",
             birth_place: null,
             job: null
         }
@@ -67,7 +67,8 @@ class Records extends Component{
         
     }
     getItems(recordId){
-        fetch('http://ec2-18-218-177-24.us-east-2.compute.amazonaws.com:8000/api/patients/'+recordId+'record/'+recordId)
+        //fetch('http://ec2-18-218-177-24.us-east-2.compute.amazonaws.com:8000/api/patients/'+recordId+'record/'+recordId)
+        fetch('http://ec2-18-218-177-24.us-east-2.compute.amazonaws.com:8000/api/patients/1/record/1')
             .then(results => results.json())
             .then(results => this.setState({record: results}));   
     }
@@ -79,7 +80,9 @@ class Records extends Component{
     render(){
         return(
             <RecordContainerStyle>
+                <h1>Patient Record</h1>
                 <RecordFile record={this.state.record}/>
+                <h2>CV & CD4 Levels</h2>
                 <GraphRecordInfo data={this.state.data}/>
             </RecordContainerStyle>
         )

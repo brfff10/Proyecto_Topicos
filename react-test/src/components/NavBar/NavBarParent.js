@@ -13,8 +13,6 @@ class NavbarParent extends Component {
               </Navbar.Brand>
               </Navbar.Header>
               <Nav>
-              <NavItem eventKey={1} href="/tab1"> Tab 1 </NavItem>
-              <NavItem eventKey={2} href="/tab2"> Tab 2 </NavItem>
               <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
                   <MenuItem eventKey={3.1} href="profile"> My Profile </MenuItem>
                   <MenuItem divider />
