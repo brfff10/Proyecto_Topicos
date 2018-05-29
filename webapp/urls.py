@@ -1,6 +1,6 @@
 from rest_framework_nested import routers
 from rest_framework.routers import DefaultRouter
-from webapp.views import PatientViewSet, RecordViewSet, CityViewSet, JobViewSet, PatientRecordViewSet, UserViewSet, DataViewSet, PatientDataViewSet, DiagnosisViewSet
+from webapp.views import PatientViewSet, RecordViewSet, CityViewSet, JobViewSet, PatientRecordViewSet, UserViewSet, DataViewSet, PatientDataViewSet, DiagnosisViewSet, TreatmentViewSet
 from django.conf.urls import url, include
 
 router = routers.SimpleRouter()
