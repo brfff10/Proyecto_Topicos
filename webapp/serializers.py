@@ -2,6 +2,12 @@ from django.contrib.auth.models import User, Group
 from webapp.models import Patient, Record, Country, City, Job
 from rest_framework import serializers
 
+class UserSerializer(serializers.ModelSerializer):
+    #snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Patient.objects.all())
+
+    class Meta:
+        model = User
+        fields = ('id', 'username')
 
 class CitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

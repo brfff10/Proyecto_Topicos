@@ -182,3 +182,13 @@ class Treatment(models.Model):
     class Meta:
         db_table = u'treatments'
 
+class Data(models.Model):
+    dataset_id = models.AutoField(primary_key=True)
+    cv_value = models.IntegerField(null=True, blank=True)
+    cd4_value = models.IntegerField(null=True, blank=True)
+    entry_date = models.DateTimeField(auto_now_add=True)
+
+    record_id = models.ForeignKey(Record)
+    class Meta:
+        db_table = u'data'
+

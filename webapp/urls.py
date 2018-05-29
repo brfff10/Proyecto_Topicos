@@ -1,7 +1,6 @@
-from django.conf.urls import url
 from rest_framework_nested import routers
-from webapp.views import PatientViewSet, RecordViewSet, CityViewSet, JobViewSet, PatientRecordViewSet
 from rest_framework.routers import DefaultRouter
+from webapp.views import PatientViewSet, RecordViewSet, CityViewSet, JobViewSet, PatientRecordViewSet, UserViewSet
 from django.conf.urls import url, include
 
 router = routers.SimpleRouter()
@@ -14,6 +13,7 @@ patients_router.register(r'record', PatientRecordViewSet, base_name='patient-rec
 router.register(r'records', RecordViewSet, base_name='record')
 router.register(r'cities', CityViewSet, base_name='city')
 router.register(r'jobs', JobViewSet, base_name='job')
+router.register(r'users', UserViewSet, base_name='job')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

@@ -17,7 +17,7 @@ class PatientInfoRequests extends Component {
         this.filterList = this.filterList.bind(this);
     }
     componentDidMount() {
-        //this.getItems(); //activate this
+        this.getItems(); //activate this
         var testPatients=[{
             patient_id: 1111,
             first_name : 'Andres',
@@ -37,7 +37,11 @@ class PatientInfoRequests extends Component {
             phone_number: '6666666666',
             applicant_unit: '1' 
         }]; //Eliminate this
+
+        //this.setState({patients: testPatients, searchResults: testPatients})
+
         this.setState({patients: testPatients, searchResults: testPatients}) //Also this
+
     }
     getItems(){
         fetch('http://localhost:8000/api/patients/')

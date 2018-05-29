@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webapp',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
     'corsheaders',
 ]
 
@@ -80,10 +82,10 @@ WSGI_APPLICATION = 'TopicosFinal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'xe',
+        'NAME': 'XE',
         'USER': 'admin',                      # Not used with sqlite3.
         'PASSWORD': 'topicos92',                  # Not used with sqlite3.
-        'HOST': 'hospitaldb.ccciqprvu8pg.us-east-2.rds.amazonaws.com',
+        'HOST': 'hospitaldb.ccciqprvu8pg.us-east-2.rds.amazonaws.com',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '1521',                      # Set to empty string for default.
     }
 }
