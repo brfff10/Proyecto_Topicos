@@ -44,7 +44,7 @@ class PatientInfoRequests extends Component {
 
     }
     getItems(){
-        fetch('http://ec2-18-218-177-24.us-east-2.compute.amazonaws.com:8000/api/patients/')
+        fetch('http://ec2-18-218-177-24.us-east-2.compute.amazonaws.com:8000/api/patients/', { mode: 'no-cors' })
             .then(results => results.json())
             .then(results => this.setState({patients: results, searchResults: results}));   
     }

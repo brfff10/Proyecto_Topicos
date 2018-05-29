@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from webapp.models import Patient, Record, Country, City, Job, Data
+from webapp.models import Patient, Record, Country, City, Job, Data, Diagnosis, Treatment
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
@@ -7,7 +7,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username')
+        fields = ('id', 'username', 'password')
 
 class CitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -44,13 +44,17 @@ class DataSerializer(serializers.HyperlinkedModelSerializer):
         model = Data
         fields = ('dataset_id', 'patient', 'cv_value', 'cd4_value', 'entry_date')
 
-"""
-class RecordTestSerializer(serializers.BaseSerializer):
-    patient = PatientSerializer(many=True)
-    def to_representation(self, obj):
-        return {
-            'record_id': obj.record_id,
-            'entry_date': obj.entry_date
-        }
+class DiagnosisSerializer(serializers.HyperlinkedModelSerializer):
+    
+    record = RecordSerializer(read_only=True)
+    class Meta:
+        model = Diagnosis
+        fields = ('diagnosis_id', 'record', 'diagnosis_date', 'amplification', 'hiv', 'tuberculosis')
 
-"""
+
+class TreatmentSerializer(serializers.HyperlinkedModelSerializer):
+    
+    diagnosis = DiagnosisSerializer(read_only=True)
+    class Meta:
+        model = Treatment
+        fields = ('treatment_id', 'diagnosis', 'start_date', 'duration', 'dose', 'mediaction')
