@@ -2,34 +2,70 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 
-const RecordStyled = styled.button`
+const RecordStyled = styled.div`
     box-shadow: 0px 0px 10px 0px #333;
     width: 700px;
     height: 800px;
     text: center;
     background-color: white;
-    margin: 5px
+    margin: 5px;
+    display: inline-block;
 `;
 
 const ListStyle = styled.div`
     display: center;
 `;
 
+const InputStyle = styled.input`
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #CCC;
+    display: inline-block;
+`;
+
 class RecordFile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            redirect: true
+            redirect: true,
+            edit: false,
+            records: '',
         }
+        this.EnableEdit = this.EnableEdit.bind(this);
+        this.SubmitInfo = this.SubmitInfo.bind(this);
+        this.EditInfo = this.EditInfo.bind(this);
+        this.SubmitInfo = this.SubmitInfo.bind(this);
+    }
+    EnableEdit(){
+        this.setState({edit: true, records: this.props.record})
+    }
+    
+    SubmitInfo(){
+        var record = this.state.records;
+        fetch('http://ec2-18-218-177-24.us-east-2.compute.amazonaws.com:8000/api/patients/1/record/1', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: record
+          })
+    }
+    EditInfo(e){
+        var record = this.state.records;
+        var key = e.target.placeholder.split(' ');
+        record[key[0]] = e.target.value;
+        
+        this.setState({records : record})
     }
     render(){
-        console.log(this.props.record.patient);
-        if (this.props.record){
+        if (this.props.record && !this.state.edit){
             return (
                 <ul>
+                    <button onClick={this.EnableEdit}>Edit</button>
                     <ListStyle >                           
-                        <RecordStyled disabled>
-                        
+                        <RecordStyled >
+                            
                             <p>{this.props.record.patient.first_name} {this.props.record.patient.last_name}</p>
                             <p>Gender: {this.props.record.patient.gender}</p>
                             <p>Age: {this.props.record.patient.age}</p>
@@ -61,7 +97,17 @@ class RecordFile extends Component {
                     </ListStyle>
                 </ul>
             );
-        } else {
+        } else if(this.props.record && this.state.edit){
+            var self = this;
+            return(
+                <ul>
+                    <button onClick={this.SubmitInfo}>Submit</button>
+                    <form onSubmit={this.SubmitInfo}>
+                        {EditForms(this.props.record, self)}
+                    </form>
+                </ul>
+            );
+        }else {
             return(
                 <p> Loading </p>
             )
@@ -69,6 +115,21 @@ class RecordFile extends Component {
        
     }
 }
+
+function EditForms(records, self){
+    var forms = [];
+    for (var keyValue in records){
+        if (keyValue != "patient" && keyValue != "record_id"){
+            forms.push(
+                <input key={keyValue} placeholder={keyValue + " : " + records[keyValue]} onChange={self.EditInfo}/>
+            );    
+        }
+            
+    }
+    
+    return forms;
+};
+
 
 export default RecordFile;
 
