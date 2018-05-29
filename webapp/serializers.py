@@ -7,7 +7,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'password')
+        fields = ('id', 'username', 'password', 'csrfmiddlewaretoken')
 
 class CitySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
