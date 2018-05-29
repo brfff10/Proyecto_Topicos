@@ -27,6 +27,7 @@ class PatientViewSet(viewsets.ModelViewSet):
     """
     A simple ViewSet for viewing and editing Patients.
     """
+
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
 
@@ -50,6 +51,16 @@ class PatientViewSet(viewsets.ModelViewSet):
     #    url_path='records', url_name='records')
     #def show_details(self, request, pk=None):
     """
+class PatientRecordViewSet(viewsets.ModelViewSet):
+    """
+    A simple ViewSet for viewing and editing Patients.
+    """
+
+    serializer_class = RecordSerializer
+
+    def get_queryset(self):
+        return Record.objects.filter(patient=self.kwargs['patient_pk'])
+    #queryset = Record.objects.all()
 
 class RecordViewSet(viewsets.ModelViewSet):
     """

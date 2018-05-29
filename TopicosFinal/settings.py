@@ -81,9 +81,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': 'xe',
-        'USER': 'brianna',                      # Not used with sqlite3.
-        'PASSWORD': 'topicos',                  # Not used with sqlite3.
-        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+        'USER': 'admin',                      # Not used with sqlite3.
+        'PASSWORD': 'topicos92',                  # Not used with sqlite3.
+        'HOST': 'hospitaldb.ccciqprvu8pg.us-east-2.rds.amazonaws.com',
         'PORT': '1521',                      # Set to empty string for default.
     }
 }
